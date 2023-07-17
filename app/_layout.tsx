@@ -1,23 +1,31 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { SplashScreen, Stack } from 'expo-router';
-import { useEffect } from 'react';
-import { useColorScheme } from 'react-native';
+// React
+import { useEffect } from "react";
+// React Native
+import { useColorScheme } from "react-native";
+// Expo
+import { SplashScreen, Stack } from "expo-router";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+import {
+  DarkTheme,
+  DefaultTheme,
+  ThemeProvider,
+} from "@react-navigation/native";
+import { useFonts } from "expo-font";
+// Components
+import { Header } from "../components/Header";
+// Context
+import { GlobalProvider } from "../contexts";
+// Libreries
+import { SWRConfig, SWRConfiguration } from "swr";
 
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
-} from 'expo-router';
-
-export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: '(tabs)',
-};
+} from "expo-router";
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
     ...FontAwesome.font,
   });
 
@@ -30,22 +38,31 @@ export default function RootLayout() {
     <>
       {/* Keep the splash screen open until the assets have loaded. In the future, we should just support async font loading with a native version of font-display. */}
       {!loaded && <SplashScreen />}
-      {loaded && <RootLayoutNav />}
+      {loaded && <App />}
     </>
   );
 }
 
-function RootLayoutNav() {
+function App() {
   const colorScheme = useColorScheme();
+  const swrConfig: SWRConfiguration = {
+    revalidateOnFocus: false,
+    revalidateIfStale: false,
+  };
 
   return (
-    <>
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-        </Stack>
+    <GlobalProvider>
+      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+        <SWRConfig value={swrConfig}>
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ header: () => <></> }} />
+            <Stack.Screen
+              name="detail"
+              options={{ header: () => <Header title="Detalle" /> }}
+            />
+          </Stack>
+        </SWRConfig>
       </ThemeProvider>
-    </>
+    </GlobalProvider>
   );
 }
