@@ -24,6 +24,11 @@ interface HeaderProps {
   canFavorite?: boolean;
 }
 
+/**
+ * Functional component that render a header
+ *
+ * @return React.ReactNode <Header/>
+ */
 export const Header = ({
   canGoBack,
   canSearch,

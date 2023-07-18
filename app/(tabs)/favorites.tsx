@@ -10,6 +10,11 @@ import { Loading } from "../../components/Loading";
 import { useAsyncStorage, useCoins } from "../../hooks";
 import { EmptyState } from "../../components/EmptyState";
 
+/**
+ * Functional component that render favorites coins and get info by swr hooks.
+ *
+ * @return React.ReactNode <Favorites/>
+ */
 export default function Favorites() {
   const { favorites } = useAsyncStorage();
   const {

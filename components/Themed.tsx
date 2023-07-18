@@ -34,6 +34,11 @@ type ThemeProps = {
 export type TextProps = ThemeProps & DefaultText["props"];
 export type ViewProps = ThemeProps & DefaultView["props"];
 
+/**
+ * Functional component that render text with theme
+ *
+ * @return React.ReactNode <Text/>
+ */
 export function Text(props: TextProps) {
   const { style, lightColor, darkColor, ...otherProps } = props;
   const color = useThemeColor({ light: lightColor, dark: darkColor }, "text");
@@ -41,6 +46,11 @@ export function Text(props: TextProps) {
   return <DefaultText style={[{ color }, style]} {...otherProps} />;
 }
 
+/**
+ * Functional component that render a view with theme
+ *
+ * @return React.ReactNode <View/>
+ */
 export function View(props: ViewProps) {
   const { style, lightColor, darkColor, ...otherProps } = props;
   const backgroundColor = useThemeColor(

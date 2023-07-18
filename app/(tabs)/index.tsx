@@ -8,22 +8,37 @@ import { CoinListItem } from "../../components/CoinListItem";
 import { CoinListLabels } from "../../components/CoinListLabels";
 import { EmptyState } from "../../components/EmptyState";
 import { Loading } from "../../components/Loading";
+import { Button } from "../../components/Button";
 // Hooks
 import { useCoins, useGlobalContext } from "../../hooks";
 
+/**
+ * Functional component that render coin's list and get info by swr hooks.
+ *
+ * @return React.ReactNode <Coins/>
+ */
 export default function Coins() {
   const {
     filters: { search },
+    setFilters,
   } = useGlobalContext();
   const {
     adapted: coinList,
-    swr: { error, isLoading },
+    swr: { error, isLoading, mutate },
   } = useCoins(true, { search });
   const shouldRender = {
     main: !!coinList?.length && !isLoading && !error,
     searchNotFound: !!!coinList?.length && !isLoading && !error,
     isLoading: isLoading && !error,
     error: error,
+  };
+
+  /**
+   * Function that reset search filter
+   */
+  const resetSearch = () => {
+    setFilters({ search: "" });
+    mutate();
   };
 
   return (
@@ -35,42 +50,19 @@ export default function Coins() {
             {coinList?.map((coin, i) => (
               <CoinListItem key={i} {...coin} />
             ))}
-            {/* <CoinListItem
-          image="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579"
-          id="bitcoin"
-          market_cap={{ original: 24, formatted: "24 Bn" }}
-          price={{ original: 18000, formatted: "18000.40" }}
-          variation={{
-            original: 1.444,
-            formatted: "1.44%",
-            color: "#16c784",
-            icon: "arrow-drop-up",
-          }}
-          symbol="BTC"
-          rank={1}
-        />
-        <CoinListItem
-          image="https://assets.coingecko.com/coins/images/825/large/bnb-icon2_2x.png?1644979850"
-          id="binancecoin"
-          market_cap={{ original: 24, formatted: "3.54 Bn" }}
-          price={{ original: 350, formatted: "350.40" }}
-          variation={{
-            original: 1.444,
-            formatted: "1.44%",
-            color: "#ea3943",
-            icon: "arrow-drop-up",
-          }}
-          symbol="BNB"
-          rank={2}
-        /> */}
           </>
         )}
         {shouldRender.searchNotFound && (
-          <EmptyState
-            title="Coin not found"
-            description="Try searching again"
-            icon="info"
-          />
+          <>
+            <EmptyState
+              title="Coin not found"
+              description="Try searching again"
+              icon="info"
+            />
+            <View style={styles.buttonContainer}>
+              <Button onPress={resetSearch}>Reset Search</Button>
+            </View>
+          </>
         )}
         {shouldRender.error && (
           <EmptyState
@@ -88,5 +80,10 @@ export default function Coins() {
 const styles = StyleSheet.create({
   container: {
     position: "relative",
+  },
+  buttonContainer: {
+    marginTop: 32,
+    width: 124,
+    marginHorizontal: "auto",
   },
 });

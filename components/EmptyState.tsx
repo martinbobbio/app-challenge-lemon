@@ -13,6 +13,11 @@ interface EmptyStateProps {
   icon: "warning" | "info" | "error";
 }
 
+/**
+ * Functional component that render a empty state
+ *
+ * @return React.ReactNode <EmptyState/>
+ */
 export function EmptyState({ title, description, icon }: EmptyStateProps) {
   return (
     <View style={styles.container}>

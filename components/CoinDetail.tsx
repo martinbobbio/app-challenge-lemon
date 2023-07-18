@@ -9,6 +9,11 @@ import { Text, View } from "./Themed";
 // Types
 import { CoinDetailAdapted } from "../types";
 
+/**
+ * Functional component that render a coin detail with their props
+ *
+ * @return React.ReactNode <CoinDetails/>
+ */
 export function CoinDetail({
   rank,
   price,

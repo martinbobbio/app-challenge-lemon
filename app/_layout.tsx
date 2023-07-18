@@ -23,6 +23,11 @@ export {
   ErrorBoundary,
 } from "expo-router";
 
+/**
+ * Functional component that load the app
+ *
+ * @return React.ReactNode <RootLayout/>
+ */
 export default function RootLayout() {
   const [loaded, error] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
@@ -43,6 +48,11 @@ export default function RootLayout() {
   );
 }
 
+/**
+ * Functional component that has the main config and logics
+ *
+ * @return React.ReactNode <App/>
+ */
 function App() {
   const colorScheme = useColorScheme();
   const swrConfig: SWRConfiguration = {

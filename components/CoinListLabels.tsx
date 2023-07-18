@@ -5,6 +5,11 @@ import { StyleSheet } from "react-native";
 // Components
 import { Text, View } from "./Themed";
 
+/**
+ * Functional component that render a coin list label with their props
+ *
+ * @return React.ReactNode <CoinListLabels/>
+ */
 export function CoinListLabels() {
   return (
     <View style={styles.container}>

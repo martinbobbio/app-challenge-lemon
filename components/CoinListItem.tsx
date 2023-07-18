@@ -10,6 +10,11 @@ import { Text, View } from "./Themed";
 // Types
 import { CoinListAdapted } from "../types";
 
+/**
+ * Functional component that render coin list item with their props
+ *
+ * @return React.ReactNode <CoinListItem/>
+ */
 export function CoinListItem({
   id,
   symbol,

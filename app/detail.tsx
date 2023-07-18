@@ -10,6 +10,11 @@ import { Loading } from "../components/Loading";
 // Hooks
 import { useCoinDetail } from "../hooks";
 
+/**
+ * Functional component that render coin's detail and get info by swr hooks.
+ *
+ * @return React.ReactNode <Favorites/>
+ */
 export default function Favorites() {
   const { id } = useLocalSearchParams();
   const {

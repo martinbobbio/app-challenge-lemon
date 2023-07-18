@@ -3,11 +3,16 @@ import { useColorScheme } from "react-native";
 // Expo
 import { Tabs } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
-
 // Constants
 import Colors from "../../constants/Colors";
+// Components
 import { Header } from "../../components/Header";
 
+/**
+ * Functional component that render tab layouts with their configs and view
+ *
+ * @return React.ReactNode <TabLayout/>
+ */
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 

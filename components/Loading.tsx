@@ -7,6 +7,11 @@ import { MaterialIcons } from "@expo/vector-icons";
 // Components
 import { Text, View } from "./Themed";
 
+/**
+ * Functional component that render a loading icon
+ *
+ * @return React.ReactNode <Loading/>
+ */
 export function Loading() {
   return (
     <View style={styles.container}>
