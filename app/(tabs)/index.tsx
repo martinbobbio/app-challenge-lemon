@@ -25,7 +25,7 @@ export default function Coins() {
   const {
     adapted: coinList,
     swr: { error, isLoading, mutate },
-  } = useCoins(true, { search });
+  } = useCoins(true, search ? { search } : undefined);
   const shouldRender = {
     main: !!coinList?.length && !isLoading && !error,
     searchNotFound: !!!coinList?.length && !isLoading && !error,
@@ -37,7 +37,7 @@ export default function Coins() {
    * Function that reset search filter
    */
   const resetSearch = () => {
-    setFilters({});
+    setFilters({ search: "" });
     mutate();
   };
 
