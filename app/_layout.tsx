@@ -58,7 +58,9 @@ function App() {
             <Stack.Screen name="(tabs)" options={{ header: () => <></> }} />
             <Stack.Screen
               name="detail"
-              options={{ header: () => <Header title="Detalle" /> }}
+              options={{
+                header: () => <Header title="Detalle" canGoBack canFavorite />,
+              }}
             />
           </Stack>
         </SWRConfig>

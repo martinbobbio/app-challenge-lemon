@@ -1,1 +1,1 @@
-export { adapterCoinList } from "./coins/coins";
+export { adapterCoinList, adapterCoinDetail } from "./coins/coins";

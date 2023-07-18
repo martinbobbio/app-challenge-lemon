@@ -13,16 +13,27 @@ type FetcherFn<Data> = () => Promise<Data>;
 /**
  * Hook fetch data with axios and swr sending request to backend api returning coin list of Coingecko API.
  */
-const useProductList = () => {
+const useCoins = (
+  shouldFetch: boolean,
+  config?: { ids?: string; search?: string }
+) => {
   const fetcher: FetcherFn<CoinList[]> = async () => {
-    const response = await apiBackend.get("api/coins");
+    const response = await apiBackend.get(`api/coins`, {
+      params: {
+        ids: config?.ids,
+        search: config?.search,
+      },
+    });
     return response.data;
   };
-  const swr = useSWR(`api/search`, fetcher);
+  const swr = useSWR(
+    shouldFetch ? `api/list/${config?.ids || config?.search}` : null,
+    fetcher
+  );
   return {
-    swr: useSWR(`api/search`, fetcher),
+    swr,
     adapted: adapterCoinList(swr.data),
   };
 };
 
-export default useProductList;
+export default useCoins;

@@ -3,12 +3,14 @@ import React from "react";
 // React Native
 import { StyleSheet, Image } from "react-native";
 import { Link } from "@react-navigation/native";
+// Expo
+import { MaterialIcons } from "@expo/vector-icons";
 // Components
 import { Text, View } from "./Themed";
 // Types
 import { CoinListAdapted } from "../types";
 
-export function CardCoin({
+export function CoinListItem({
   id,
   symbol,
   image,
@@ -19,18 +21,23 @@ export function CardCoin({
 }: CoinListAdapted) {
   return (
     <View style={styles.container}>
-      <Link to={{ screen: "detail", params: { id } }}>
+      <Link to={{ screen: "detail", params: { id, image, symbol } }}>
         <Text style={styles.rank}>{rank}</Text>
         <Image style={styles.image} source={{ uri: image }} />
         <Text style={styles.symbol}>{symbol}</Text>
-        <Text style={styles.market_cap}>{market_cap.formatted}</Text>
+        <Text style={styles.marketCap}>{market_cap.formatted}</Text>
         <Text style={styles.price}>{price.formatted}</Text>
         <Text
           style={{
             ...styles.variation,
-            color: variation.isPositive ? "#16c784" : "#ea3943",
+            color: variation.color,
           }}
         >
+          <MaterialIcons
+            name={variation.icon}
+            size={14}
+            color={variation.color}
+          />
           {variation.formatted}
         </Text>
       </Link>
@@ -67,7 +74,7 @@ const styles = StyleSheet.create({
     lineHeight: 0,
     fontWeight: "700",
   },
-  market_cap: {
+  marketCap: {
     color: "#cfd6e4",
     fontSize: 11,
     position: "absolute",
@@ -85,10 +92,9 @@ const styles = StyleSheet.create({
   variation: {
     position: "absolute",
     right: "24px",
-    top: "24px",
-    lineHeight: 0,
+    top: "18px",
+    lineHeight: 14,
+    display: "flex",
     fontWeight: "700",
-    // color: "#ea3943",
-    color: "#16c784",
   },
 });

@@ -1,2 +1,7 @@
 // Product
-export type { CoinList, CoinListAdapted } from "./coins/coins";
+export type {
+  CoinList,
+  CoinListAdapted,
+  CoinDetail,
+  CoinDetailAdapted,
+} from "./coins/coins";

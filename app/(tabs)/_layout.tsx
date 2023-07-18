@@ -21,7 +21,9 @@ export default function TabLayout() {
         name="index"
         options={{
           title: "Coins",
-          header: ({ options: { title } }) => <Header title={title} />,
+          header: ({ options: { title } }) => (
+            <Header title={title} canSearch />
+          ),
           tabBarIcon: ({ color }) => (
             <MaterialIcons name="attach-money" size={24} color={color} />
           ),

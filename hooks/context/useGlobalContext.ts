@@ -6,7 +6,6 @@ import { FilterGlobalState, GlobalContext } from "../../contexts";
 /**
  * Hook that facility global contexts calls.
  *
- * @return useGlobalContextResponse
  */
 const useGlobalContext = () => {
   const { state, dispatch } = useContext(GlobalContext);

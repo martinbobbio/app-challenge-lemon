@@ -1,3 +1,21 @@
+interface CurrenciesTickers {
+  ars: number;
+  btc: number;
+  usd: number;
+}
+
+interface VariationsAdapted {
+  original: number;
+  formatted: string;
+  color: string;
+  icon: "arrow-drop-down" | "arrow-drop-up";
+}
+
+interface AmountAdapted {
+  original: number;
+  formatted: string;
+}
+
 export interface CoinList {
   ath: number;
   ath_change_percentage: number;
@@ -32,17 +50,49 @@ export interface CoinListAdapted {
   image: string;
   symbol: string;
   rank: number;
-  price: {
-    original: number;
-    formatted: string;
+  price: AmountAdapted;
+  variation: VariationsAdapted;
+  market_cap: AmountAdapted;
+}
+
+export interface CoinDetail {
+  id: string;
+  symbol: string;
+  name: string;
+  image: {
+    thumb: string;
+    small: string;
+    large: string;
   };
-  variation: {
-    original: number;
-    formatted: string;
-    isPositive: boolean;
+  description: {
+    en: string;
+    es: string;
   };
-  market_cap: {
-    original: number;
-    formatted: string;
+  market_data: {
+    ath: CurrenciesTickers;
+    atl: CurrenciesTickers;
+    market_cap: CurrenciesTickers;
+    total_volume: CurrenciesTickers;
+    current_price: CurrenciesTickers;
+    price_change_percentage_24h: number;
+    price_change_percentage_7d: number;
+    price_change_percentage_30d: number;
+    price_change_percentage_1y: number;
+    market_cap_rank: number;
   };
+}
+
+export interface CoinDetailAdapted {
+  id: string;
+  image: string;
+  symbol: string;
+  name: string;
+  rank: number;
+  description: string;
+  price: AmountAdapted;
+  market_cap: AmountAdapted;
+  variation_24h: VariationsAdapted;
+  variation_7d: VariationsAdapted;
+  variation_30d: VariationsAdapted;
+  variation_1y: VariationsAdapted;
 }
