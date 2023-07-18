@@ -87,3 +87,7 @@ yarn web
 - `npm run dios` or `yarn dios`: Starts the app on an iOS simulator/device.
 - `npm run web` or `yarn web`: Starts the app in the web browser.
 - `npm run test` or `yarn test`: Runs tests using Jest
+
+## Additional Notes
+
+This project uses various dependencies such as `expo`, `@react-navigation/native`, `axios`, `swr`, and more. Make sure to refer to their respective documentation for usage instructions.
