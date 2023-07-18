@@ -37,7 +37,7 @@ export default function Coins() {
    * Function that reset search filter
    */
   const resetSearch = () => {
-    setFilters({ search: "" });
+    setFilters({});
     mutate();
   };
 
