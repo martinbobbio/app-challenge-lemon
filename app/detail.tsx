@@ -9,6 +9,7 @@ import { EmptyState } from "../components/EmptyState";
 import { Loading } from "../components/Loading";
 // Hooks
 import { useCoinDetail } from "../hooks";
+import { FadeIn } from "../components/FadeIn";
 
 /**
  * Functional component that render coin's detail and get info by swr hooks.
@@ -29,7 +30,11 @@ export default function Favorites() {
 
   return (
     <View style={styles.container}>
-      {shouldRender.main && coinDetail && <CoinDetail {...coinDetail} />}
+      {shouldRender.main && coinDetail && (
+        <FadeIn>
+          <CoinDetail {...coinDetail} />
+        </FadeIn>
+      )}
       {shouldRender.error && (
         <EmptyState
           title="API Limit Exceeded"

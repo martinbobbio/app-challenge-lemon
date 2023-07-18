@@ -1,7 +1,7 @@
 // React
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 // React Native
-import { StyleSheet, ScrollView } from "react-native";
+import { StyleSheet, ScrollView, Animated } from "react-native";
 // Components
 import { View } from "../../components/Themed";
 import { CoinListItem } from "../../components/CoinListItem";
@@ -11,6 +11,7 @@ import { Loading } from "../../components/Loading";
 import { Button } from "../../components/Button";
 // Hooks
 import { useCoins, useGlobalContext } from "../../hooks";
+import { FadeIn } from "../../components/FadeIn";
 
 /**
  * Functional component that render coin's list and get info by swr hooks.
@@ -45,12 +46,12 @@ export default function Coins() {
     <ScrollView>
       <View style={styles.container}>
         {shouldRender.main && (
-          <>
+          <FadeIn>
             <CoinListLabels />
             {coinList?.map((coin, i) => (
               <CoinListItem key={i} {...coin} />
             ))}
-          </>
+          </FadeIn>
         )}
         {shouldRender.searchNotFound && (
           <>

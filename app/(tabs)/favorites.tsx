@@ -9,6 +9,7 @@ import { Loading } from "../../components/Loading";
 // Hooks
 import { useAsyncStorage, useCoins } from "../../hooks";
 import { EmptyState } from "../../components/EmptyState";
+import { FadeIn } from "../../components/FadeIn";
 
 /**
  * Functional component that render favorites coins and get info by swr hooks.
@@ -33,12 +34,12 @@ export default function Favorites() {
   return (
     <View style={styles.container}>
       {shouldRender.main && (
-        <>
+        <FadeIn>
           <CoinListLabels />
           {coinList?.map((coin, i) => (
             <CoinListItem key={i} {...coin} />
           ))}
-        </>
+        </FadeIn>
       )}
       {shouldRender.favoritesNotFound && (
         <EmptyState
