@@ -4,7 +4,8 @@ export const prodUrl = "https://someapp.herokuapp.com";
 
 const ENV = {
   dev: {
-    apiUrl: "http://localhost:3000",
+    // apiUrl: "http://localhost:3000",
+    apiUrl: "https://backend-challenge-lemon.vercel.app/",
   },
   prod: {
     apiUrl: "https://backend-challenge-lemon.vercel.app/",

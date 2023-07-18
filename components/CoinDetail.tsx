@@ -21,23 +21,29 @@ export function CoinDetail({
     <View style={styles.container}>
       <Text style={styles.name}>
         {name}
-        <Text style={styles.rank}>#{rank}</Text>
+        {rank && <Text style={styles.rank}>#{rank}</Text>}
       </Text>
       <View style={styles.containerPriceAndVariation}>
         <Text style={styles.price}>US$ {price.formatted}</Text>
-        <Text
-          style={{
-            ...styles.variation,
-            backgroundColor: variation_24h.color,
-          }}
-        >
-          <MaterialIcons name={variation_24h.icon} size={14} color="white" />
-          {variation_24h.formatted}
-        </Text>
+        {variation_24h.original && (
+          <Text
+            style={{
+              ...styles.variation,
+              backgroundColor: variation_24h.color,
+            }}
+          >
+            <MaterialIcons name={variation_24h.icon} size={14} color="white" />
+            {variation_24h.formatted}
+          </Text>
+        )}
       </View>
       <Text style={styles.marketCap}>{market_cap.formatted}</Text>
-      <Text style={styles.descriptionLabel}>About {name}</Text>
-      <Text style={styles.description}>{description}</Text>
+      {description && (
+        <View>
+          <Text style={styles.descriptionLabel}>About {name}</Text>
+          <Text style={styles.description}>{description}</Text>
+        </View>
+      )}
     </View>
   );
 }

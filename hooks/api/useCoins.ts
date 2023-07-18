@@ -21,7 +21,7 @@ const useCoins = (
     const response = await apiBackend.get(`api/coins`, {
       params: {
         ids: config?.ids,
-        search: config?.search,
+        search: config?.search?.toLowerCase(),
       },
     });
     return response.data;

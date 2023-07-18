@@ -27,19 +27,21 @@ export function CoinListItem({
         <Text style={styles.symbol}>{symbol}</Text>
         <Text style={styles.marketCap}>{market_cap.formatted}</Text>
         <Text style={styles.price}>{price.formatted}</Text>
-        <Text
-          style={{
-            ...styles.variation,
-            color: variation.color,
-          }}
-        >
-          <MaterialIcons
-            name={variation.icon}
-            size={14}
-            color={variation.color}
-          />
-          {variation.formatted}
-        </Text>
+        {variation.original && (
+          <Text
+            style={{
+              ...styles.variation,
+              color: variation.color,
+            }}
+          >
+            <MaterialIcons
+              name={variation.icon}
+              size={14}
+              color={variation.color}
+            />
+            {variation.formatted}
+          </Text>
+        )}
       </Link>
     </View>
   );
@@ -57,7 +59,7 @@ const styles = StyleSheet.create({
     borderRadius: 24,
     position: "absolute",
     top: "12px",
-    left: "48px",
+    left: "56px",
   },
   rank: {
     position: "absolute",
@@ -69,7 +71,7 @@ const styles = StyleSheet.create({
   symbol: {
     fontSize: 11,
     position: "absolute",
-    left: "80px",
+    left: "88px",
     top: "16px",
     lineHeight: 0,
     fontWeight: "700",
@@ -78,13 +80,13 @@ const styles = StyleSheet.create({
     color: "#cfd6e4",
     fontSize: 11,
     position: "absolute",
-    left: "80px",
+    left: "88px",
     top: "32px",
     lineHeight: 0,
   },
   price: {
     position: "absolute",
-    left: "180px",
+    left: "188px",
     top: "24px",
     lineHeight: 0,
     fontWeight: "700",

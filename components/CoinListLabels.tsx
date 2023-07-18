@@ -31,12 +31,12 @@ const styles = StyleSheet.create({
     left: "16px",
   },
   price: {
-    left: "180px",
+    left: "188px",
   },
   variation: {
     right: "24px",
   },
   marketCap: {
-    left: "48px",
+    left: "56px",
   },
 });
