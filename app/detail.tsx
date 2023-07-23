@@ -5,11 +5,11 @@ import { useLocalSearchParams } from "expo-router";
 // Components
 import { View } from "../components/Themed";
 import { CoinDetail } from "../components/CoinDetail";
-import { EmptyState } from "../components/EmptyState";
 import { Loading } from "../components/Loading";
+import { FadeIn } from "../components/FadeIn";
+import { Error } from "../components/Error";
 // Hooks
 import { useCoinDetail } from "../hooks";
-import { FadeIn } from "../components/FadeIn";
 
 /**
  * Functional component that render coin's detail and get info by swr hooks.
@@ -35,13 +35,7 @@ export default function Favorites() {
           <CoinDetail {...coinDetail} />
         </FadeIn>
       )}
-      {shouldRender.error && (
-        <EmptyState
-          title="API Limit Exceeded"
-          description="Try again in a few minutes"
-          icon="error"
-        />
-      )}
+      {shouldRender.error && <Error error={error} />}
       {shouldRender.isLoading && <Loading />}
     </View>
   );

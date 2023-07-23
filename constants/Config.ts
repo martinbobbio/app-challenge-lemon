@@ -1,11 +1,10 @@
 import Constants from "expo-constants";
 
-export const prodUrl = "https://someapp.herokuapp.com";
-
 const ENV = {
   dev: {
     // apiUrl: "http://localhost:3000",
-    apiUrl: "https://backend-challenge-lemon.vercel.app/",
+    apiUrl: "http://localhost:3001",
+    // apiUrl: "https://backend-challenge-lemon.vercel.app/",
   },
   prod: {
     apiUrl: "https://backend-challenge-lemon.vercel.app/",

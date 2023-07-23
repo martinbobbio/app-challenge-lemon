@@ -6,10 +6,11 @@ import { View } from "../../components/Themed";
 import { CoinListLabels } from "../../components/CoinListLabels";
 import { CoinListItem } from "../../components/CoinListItem";
 import { Loading } from "../../components/Loading";
+import { Error } from "../../components/Error";
+import { FadeIn } from "../../components/FadeIn";
+import { EmptyState } from "../../components/EmptyState";
 // Hooks
 import { useAsyncStorage, useCoins } from "../../hooks";
-import { EmptyState } from "../../components/EmptyState";
-import { FadeIn } from "../../components/FadeIn";
 
 /**
  * Functional component that render favorites coins and get info by swr hooks.
@@ -48,13 +49,7 @@ export default function Favorites() {
           icon="info"
         />
       )}
-      {shouldRender.error && (
-        <EmptyState
-          title="API Limit Exceeded"
-          description="Try again in a few minutes"
-          icon="error"
-        />
-      )}
+      {shouldRender.error && <Error error={error} />}
       {shouldRender.isLoading && <Loading />}
     </View>
   );
