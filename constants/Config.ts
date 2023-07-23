@@ -2,8 +2,8 @@ import Constants from "expo-constants";
 
 const ENV = {
   dev: {
-    // apiUrl: "http://localhost:3000",
-    apiUrl: "http://localhost:3001",
+    apiUrl: "http://localhost:3000",
+    // apiUrl: "http://localhost:3001",
     // apiUrl: "https://backend-challenge-lemon.vercel.app/",
   },
   prod: {
